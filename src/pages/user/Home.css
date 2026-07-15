@@ -1,0 +1,96 @@
+.home {
+  min-height: 100vh;
+  background: #f0f0f0;
+  font-family: system-ui, sans-serif;
+}
+
+.hero {
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  color: white;
+  text-align: center;
+  padding: 3rem 1.5rem 4rem;
+  border-radius: 0 0 50% 50% / 0 0 15% 15%;
+}
+
+.bus-icon {
+  font-size: 4rem;
+}
+
+.hero h1 {
+  margin: 0.5rem 0 0;
+  font-size: 2rem;
+}
+
+.subtitle {
+  margin: 0 0 1.5rem;
+  opacity: 0.9;
+}
+
+.greeting {
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: bold;
+  margin: 0 0 0.5rem;
+}
+
+.welcome-text {
+  font-weight: 600;
+}
+
+.content {
+  padding: 2rem 1.5rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.balance-card {
+  background: #4caf50;
+  color: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.balance-label {
+  margin: 0 0 0.5rem;
+  opacity: 0.9;
+}
+
+.balance-amount {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #66bb6a;
+  color: #1b5e20;
+}
+
+.btn-secondary {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.btn-logout {
+  background: #4caf50;
+  color: white;
+}
+
+.home-loading {
+  text-align: center;
+  padding: 3rem;
+  font-family: system-ui, sans-serif;
+}
