@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import authRoutes from './routes/auth.route.js';
 import usersRoutes from './routes/users.route.js';
+import axios from 'axios';
 
 const app = express();
 
@@ -12,6 +13,8 @@ app.use(express.json()); // lets Express read JSON from req.body
 app.use('/api/auth', authRoutes);
 app.use('/api/users', usersRoutes);
 
+const PAYSTACK_SECRET_KEY='sk_test_48522c9c21a16b1339015fcc3a604bc81ecbb54f';
+const SK = PAYSTACK_SECRET_KEY;
 
 app.post('/api/pay', async (req, res) => {
     const { email, amount, cardNumber } = req.body;
