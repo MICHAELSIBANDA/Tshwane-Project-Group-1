@@ -20,5 +20,8 @@ export async function changePassword({ currentPassword, newPassword }) {
   if (currentPassword !== "password123") {
     throw new Error("Current password is incorrect");
   }
+  if (!newPassword) {
+    throw new Error("New password is required");
+  }
   return { success: true };
 }

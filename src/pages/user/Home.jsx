@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getProfile } from "../../services/userService";
-import busPhoto from "../../assets/images/bus.jpeg";
-import tshwaneLogo from "../../assets/images/city-icon.jpeg";
 import "./Home.css";
 
 function Home() {
@@ -34,14 +32,6 @@ function Home() {
 
   return (
     <main className="home">
-      <section className="photo-banner" aria-label="Tshwane Bus Service">
-        <img className="bus-photo" src={busPhoto} alt="Tshwane bus" />
-
-        <div className="logo-badge">
-          <img className="logo-icon" src={tshwaneLogo} alt="City of Tshwane" />
-        </div>
-      </section>
-
       <section className="hero">
         <div className="hero-inner">
           <svg className="bus-icon-front" viewBox="0 0 140 170" aria-hidden="true">
@@ -110,6 +100,10 @@ function Home() {
 
         <button className="btn btn-load" onClick={() => navigate("/payment")}>
           Load Funds
+        </button>
+
+         <button className="btn btn-load" onClick={() => navigate("/change-password")}>
+          Change Password
         </button>
 
         <button className="btn btn-logout" onClick={() => navigate("/login")}>

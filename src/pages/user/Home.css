@@ -7,44 +7,6 @@
   position: relative;
 }
 
-.photo-banner {
-  aspect-ratio: 886 / 374;
-  background: #ffffff;
-  overflow: hidden;
-  position: relative;
-  z-index: 3;
-}
-
-.bus-photo {
-  display: block;
-  height: 100%;
-  width: 100%;
-  object-fit: contain;
-  object-position: center;
-}
-
-.logo-badge {
-  align-items: center;
-  background: #ffffff;
-  border-radius: 0;
-  display: flex;
-  height: clamp(140px, 20vw, 215px);
-  justify-content: center;
-  left: 0;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  top: 0;
-  width: clamp(140px, 20vw, 215px);
-}
-
-.logo-icon {
-  display: block;
-  height: 100%;
-  object-fit: cover;
-  width: 100%;
-}
-
 .hero {
   background: #378f3d;
   border-radius: 0 0 50% 50% / 0 0 17% 17%;
