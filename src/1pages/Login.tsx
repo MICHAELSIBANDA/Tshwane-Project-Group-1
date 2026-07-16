@@ -64,12 +64,12 @@ export default function Login() {
           real assets - see the note below the code for where to put them. */}
             <div className="login-top-banner">
                 <img
-                    src="/assets/tshwane-logo.png"
+                    src="/assets/tshwane-logo.jpeg"
                     alt="City of Tshwane"
                     className="login-top-banner__logo"
                 />
                 <img
-                    src="/assets/bus-banner.jpg"
+                    src="/assets/bus-banner.jpeg"
                     alt="Tshwane Bus Services bus"
                     className="login-top-banner__photo"
                 />
