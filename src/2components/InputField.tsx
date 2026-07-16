@@ -10,6 +10,8 @@ export interface InputFieldProps {
     placeholder?: string;
     autoComplete?: string;
     disabled?: boolean;
+    pill?: boolean;
+    visuallyHideLabel?: boolean;
 }
 
 /**
@@ -18,6 +20,11 @@ export interface InputFieldProps {
  * Generic labeled text input with inline error messaging.
  * Used for the identifier field on Login, and reusable across
  * SignUp / PersonalInformation too.
+ *
+ * `pill` switches on the rounded, filled style used on Login.
+ * `visuallyHideLabel` keeps the label in the DOM for screen readers
+ * but hides it visually, for designs (like Login) that only show
+ * placeholder text inside the field.
  */
 export default function InputField({
     id,
@@ -29,10 +36,15 @@ export default function InputField({
     placeholder,
     autoComplete,
     disabled = false,
+    pill = false,
+    visuallyHideLabel = false,
 }: InputFieldProps) {
     return (
         <div className="field">
-            <label htmlFor={id} className="field-label">
+            <label
+                htmlFor={id}
+                className={`field-label${visuallyHideLabel ? " sr-only" : ""}`}
+            >
                 {label}
             </label>
             <input
@@ -46,7 +58,8 @@ export default function InputField({
                 disabled={disabled}
                 aria-invalid={!!error}
                 aria-describedby={error ? `${id}-error` : undefined}
-                className={`field-input${error ? " field-input--error" : ""}`}
+                className={`field-input${pill ? " field-input--pill" : ""}${error ? " field-input--error" : ""
+                    }`}
             />
             {error && (
                 <p id={`${id}-error`} className="field-error" role="alert">

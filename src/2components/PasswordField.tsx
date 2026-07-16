@@ -9,6 +9,8 @@ export interface PasswordFieldProps {
     placeholder?: string;
     autoComplete?: string;
     disabled?: boolean;
+    pill?: boolean;
+    visuallyHideLabel?: boolean;
 }
 
 /**
@@ -26,12 +28,17 @@ export default function PasswordField({
     placeholder = "Enter your password",
     autoComplete = "current-password",
     disabled = false,
+    pill = false,
+    visuallyHideLabel = false,
 }: PasswordFieldProps) {
     const [visible, setVisible] = useState(false);
 
     return (
         <div className="field">
-            <label htmlFor={id} className="field-label">
+            <label
+                htmlFor={id}
+                className={`field-label${visuallyHideLabel ? " sr-only" : ""}`}
+            >
                 {label}
             </label>
             <div className="password-field-wrapper">
@@ -46,7 +53,8 @@ export default function PasswordField({
                     disabled={disabled}
                     aria-invalid={!!error}
                     aria-describedby={error ? `${id}-error` : undefined}
-                    className={`field-input${error ? " field-input--error" : ""}`}
+                    className={`field-input${pill ? " field-input--pill" : ""}${error ? " field-input--error" : ""
+                        }`}
                 />
                 <button
                     type="button"

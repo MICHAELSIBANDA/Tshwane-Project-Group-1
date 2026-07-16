@@ -1,69 +1,106 @@
 /*
   Login.css
 
-  Styles for the Login page and the shared form building blocks
-  (FormHeader, InputField, PasswordField, Button) since they're all
-  first used here. If SignUp/PersonalInformation need the same
-  classes, consider moving the shared bits into a global
-  `forms.css` and importing that instead of duplicating.
+  Matches the Tshwane Bus Service mockup: crest + bus photo banner,
+  a green "dome" hero with a bus icon and welcome copy, then pill
+  fields and pill buttons on a white background.
 */
 
 :root {
-    --tbs-navy: #12305b;
-    --tbs-blue: #1c5fae;
-    --tbs-amber: #f2a71b;
-    --tbs-bg: #f3f6fa;
+    --tbs-green-dark: #1f7a34;
+    --tbs-green: #2f9e46;
+    --tbs-green-pale-fill: #bcd9b6;
+    --tbs-green-pale-bg: #eef4ec;
     --tbs-text: #1a2433;
     --tbs-muted: #647184;
     --tbs-error: #c23b3b;
     --tbs-border: #d7dee7;
 }
 
-.login-page {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--tbs-bg);
-    padding: 24px;
+* {
     box-sizing: border-box;
 }
 
-.login-card {
-    width: 100%;
-    max-width: 200px;
+.login-page {
+    max-width: 430px;
+    margin: 0 auto;
+    min-height: 100vh;
     background: #ffffff;
-    border: 1px solid var(--tbs-border);
-    border-radius: 12px;
-    padding: 32px 28px;
-    box-shadow: 0 8px 24px rgba(18, 48, 91, 0.08);
+    display: flex;
+    flex-direction: column;
 }
 
-/* FormHeader */
-.form-header {
+/* Top banner: crest on the left, bus photo filling the rest */
+.login-top-banner {
+    display: flex;
+    height: 110px;
+}
+
+.login-top-banner__logo {
+    width: 35%;
+    height: 100%;
+    object-fit: contain;
+    background: var(--tbs-green-pale-bg);
+    padding: 12px;
+}
+
+.login-top-banner__photo {
+    width: 65%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Green dome hero */
+.login-hero {
+    background: var(--tbs-green);
+    border-radius: 0 0 50% 50% / 0 0 22% 22%;
+    padding: 36px 32px 56px;
     text-align: center;
-    margin-bottom: 24px;
+    color: #ffffff;
 }
 
-.form-header__logo {
-    height: 40px;
-    margin-bottom: 12px;
+.login-hero__icon {
+    color: #12341c;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: center;
 }
 
-.form-header__title {
-    font-size: 1.5rem;
+.login-hero__brand {
+    font-size: 2rem;
     font-weight: 700;
-    color: var(--tbs-navy);
-    margin: 0 0 4px;
+    margin: 0;
+    line-height: 1.1;
 }
 
-.form-header__subtitle {
-    font-size: 0.9rem;
-    color: var(--tbs-muted);
+.login-hero__brand-sub {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 2px 0 20px;
+}
+
+.login-hero__welcome {
+    font-size: 2.4rem;
+    font-weight: 800;
+    font-style: italic;
+    margin: 0 0 18px;
+}
+
+.login-hero__tagline {
+    font-size: 0.95rem;
+    color: #16321d;
+    font-weight: 500;
     margin: 0;
 }
 
-/* Fields */
+/* Form section */
+.login-form {
+    flex: 1;
+    padding: 32px 28px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
 .field {
     margin-bottom: 18px;
 }
@@ -76,9 +113,21 @@
     margin-bottom: 6px;
 }
 
+/* Visually hide a label but keep it for screen readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 .field-input {
     width: 100%;
-    box-sizing: border-box;
     padding: 10px 12px;
     font-size: 0.95rem;
     border: 1px solid var(--tbs-border);
@@ -90,12 +139,31 @@
 
 .field-input:focus {
     outline: none;
-    border-color: var(--tbs-blue);
-    box-shadow: 0 0 0 3px rgba(28, 95, 174, 0.15);
+    border-color: var(--tbs-green);
+    box-shadow: 0 0 0 3px rgba(47, 158, 70, 0.15);
 }
 
 .field-input--error {
     border-color: var(--tbs-error);
+}
+
+/* Pill style used on Login: filled, fully rounded, no visible border */
+.field-input--pill {
+    background: var(--tbs-green-pale-fill);
+    border: none;
+    border-radius: 999px;
+    padding: 14px 22px;
+    color: #2b3d2f;
+    font-weight: 500;
+}
+
+.field-input--pill::placeholder {
+    color: #3f5b45;
+    opacity: 0.85;
+}
+
+.field-input--pill.field-input--error {
+    box-shadow: 0 0 0 2px var(--tbs-error);
 }
 
 .field-error {
@@ -117,10 +185,10 @@
 
 .password-toggle {
     position: absolute;
-    right: 10px;
+    right: 16px;
     background: none;
     border: none;
-    color: var(--tbs-blue);
+    color: #2b3d2f;
     font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
@@ -140,22 +208,49 @@
     border-radius: 8px;
     border: none;
     cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
     transition: background-color 0.15s ease, opacity 0.15s ease;
 }
 
 .btn--primary {
-    background: var(--tbs-blue);
+    background: var(--tbs-green-dark);
     color: #ffffff;
 }
 
 .btn--primary:hover:not(:disabled) {
-    background: var(--tbs-navy);
+    background: #185c28;
+}
+
+.btn--secondary {
+    background: var(--tbs-green);
+    color: #12341c;
+    font-weight: 700;
+}
+
+.btn--secondary:hover {
+    background: var(--tbs-green-dark);
+    color: #ffffff;
 }
 
 .btn:disabled,
 .btn--loading {
     opacity: 0.7;
     cursor: not-allowed;
+}
+
+/* Pill buttons (Login / Register on this page) */
+.btn--pill {
+    border-radius: 999px;
+    padding: 14px 24px;
+    margin-top: 6px;
+}
+
+.btn__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* Form-level error */
@@ -169,20 +264,10 @@
     margin-bottom: 18px;
 }
 
-/* Sign up prompt */
-.login-signup-prompt {
+/* "or" divider */
+.login-divider {
     text-align: center;
-    margin: 20px 0 0;
-    font-size: 0.85rem;
     color: var(--tbs-muted);
-}
-
-.login-signup-prompt a {
-    color: var(--tbs-blue);
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.login-signup-prompt a:hover {
-    text-decoration: underline;
+    font-size: 0.9rem;
+    margin: 14px 0;
 }
