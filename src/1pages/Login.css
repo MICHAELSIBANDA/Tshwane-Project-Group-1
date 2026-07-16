@@ -25,11 +25,17 @@
     max-width: 430px;
     margin: 0 auto;
     min-height: 100vh;
-    background: #ffffff;
+    background-image: url("/assets/backg.jpeg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    background-color: #e9ebe9;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
+/*background: #ffffff;*/
 /* Top banner: crest on the left, bus photo filling the rest */
 .login-top-banner {
     display: flex;
