@@ -1,0 +1,253 @@
+.home {
+  min-height: 100vh;
+  background: #6d6f6d;
+  color: #ffffff;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero {
+  background: #378f3d;
+  border-radius: 0 0 50% 50% / 0 0 17% 17%;
+  margin-top: -8px;
+  min-height: clamp(660px, 81vw, 865px);
+  overflow: hidden;
+  padding: clamp(58px, 6vw, 74px) 1.5rem clamp(58px, 7vw, 80px);
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
+.hero::before {
+  background: #378f3d;
+  clip-path: polygon(0 40%, 6% 45%, 13% 35%, 21% 48%, 31% 36%, 42% 43%, 51% 33%, 63% 45%, 72% 37%, 83% 42%, 92% 34%, 100% 43%, 100% 100%, 0 100%);
+  content: "";
+  height: 54px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: -36px;
+}
+
+.hero-inner {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1080px;
+  position: relative;
+  z-index: 2;
+}
+
+.bus-icon-front {
+  display: block;
+  height: clamp(178px, 22vw, 250px);
+  margin: 0 auto clamp(42px, 6.2vw, 72px);
+  width: clamp(148px, 18vw, 210px);
+}
+
+.hero-title {
+  font-size: clamp(3.2rem, 6.4vw, 4.7rem);
+  font-weight: 800;
+  line-height: 0.95;
+  margin: 0;
+}
+
+.hero-subtitle {
+  font-size: clamp(2rem, 4.4vw, 3.1rem);
+  font-weight: 400;
+  line-height: 1;
+  margin: 0.45rem 0 clamp(42px, 5.5vw, 70px);
+}
+
+.greeting {
+  color: #ffffff;
+  font-size: clamp(3.25rem, 8.6vw, 6.25rem);
+  font-style: italic;
+  font-weight: 900;
+  line-height: 0.9;
+  margin: 0 0 clamp(46px, 4vw, 62px);
+  max-width: 100%;
+}
+
+.welcome-text {
+  color: #000000;
+  font-size: clamp(1.65rem, 3.45vw, 2.45rem);
+  font-weight: 800;
+  line-height: 1.45;
+  margin: 0;
+  position: relative;
+  z-index: 3;
+}
+
+.city-skyline {
+  fill: rgba(0, 0, 0, 0.28);
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+.hero-skyline {
+  bottom: 7px;
+  height: clamp(185px, 25vw, 292px);
+}
+
+.content {
+  margin-top: -1px;
+  min-height: clamp(785px, 74vw, 820px);
+  padding: clamp(32px, 3.8vw, 42px) clamp(18px, 6vw, 64px) 48px;
+  position: relative;
+}
+
+.content-skyline {
+  bottom: -6px;
+  fill: rgba(0, 0, 0, 0.12);
+  height: clamp(315px, 28vw, 405px);
+}
+
+.balance-card {
+  background: #438948;
+  border-radius: clamp(32px, 6vw, 76px);
+  color: #ffffff;
+  margin: 0 auto clamp(28px, 3vw, 34px);
+  max-width: 940px;
+  min-height: clamp(278px, 31vw, 395px);
+  overflow: hidden;
+  padding: clamp(34px, 4vw, 46px) clamp(36px, 5vw, 62px);
+  position: relative;
+  z-index: 1;
+}
+
+.bus-watermark {
+  bottom: clamp(-40px, -3vw, -24px);
+  color: rgba(20, 73, 30, 0.5);
+  height: clamp(260px, 33vw, 405px);
+  position: absolute;
+  right: clamp(16px, 4vw, 46px);
+  width: clamp(220px, 30vw, 360px);
+}
+
+.wallet-icon {
+  color: #112715;
+  display: block;
+  height: clamp(52px, 5.5vw, 70px);
+  margin-bottom: clamp(34px, 3.7vw, 44px);
+  width: clamp(52px, 5.5vw, 70px);
+}
+
+.balance-label {
+  font-size: clamp(1.8rem, 3.35vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0 0 clamp(26px, 3vw, 38px);
+  position: relative;
+  z-index: 1;
+}
+
+.balance-amount {
+  font-size: clamp(3.7rem, 7vw, 4.75rem);
+  font-weight: 800;
+  line-height: 0.95;
+  margin: 0 0 clamp(30px, 3.6vw, 46px);
+  position: relative;
+  z-index: 1;
+}
+
+.balance-card hr {
+  border: none;
+  border-top: 4px solid rgba(255, 255, 255, 0.72);
+  margin: 0 0 0.2rem;
+  max-width: 86%;
+  position: relative;
+  z-index: 1;
+}
+
+.last-updated {
+  color: #182b17;
+  font-size: clamp(1.15rem, 2.8vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  display: block;
+  font-family: inherit;
+  font-weight: 800;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  transition: filter 160ms ease, transform 160ms ease;
+  z-index: 1;
+}
+
+.btn:hover {
+  filter: brightness(1.05);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-load {
+  background: #378f3d;
+  color: #182318;
+  font-size: clamp(1.25rem, 2.8vw, 1.9rem);
+  margin-bottom: clamp(104px, 9.5vw, 112px);
+  max-width: 620px;
+  min-height: clamp(66px, 7.3vw, 78px);
+  width: min(74%, 620px);
+}
+
+.btn-logout {
+  background: #1f8e30;
+  color: #ffffff;
+  font-size: clamp(1.8rem, 3.8vw, 2.7rem);
+  font-weight: 400;
+  max-width: 480px;
+  min-height: clamp(82px, 9.8vw, 106px);
+  width: min(62%, 480px);
+}
+
+.home-loading {
+  align-items: center;
+  background: #6d6f6d;
+  color: #ffffff;
+  display: flex;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 3rem;
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  .hero {
+    min-height: 650px;
+  }
+
+  .greeting {
+    font-size: clamp(2.8rem, 12vw, 3.6rem);
+  }
+
+  .balance-card {
+    padding: 28px 28px 34px;
+  }
+
+  .bus-watermark {
+    opacity: 0.55;
+    right: -24px;
+  }
+
+  .btn-load,
+  .btn-logout {
+    width: min(82%, 620px);
+  }
+}
