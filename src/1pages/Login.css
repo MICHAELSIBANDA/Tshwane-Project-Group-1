@@ -1,0 +1,188 @@
+/*
+  Login.css
+
+  Styles for the Login page and the shared form building blocks
+  (FormHeader, InputField, PasswordField, Button) since they're all
+  first used here. If SignUp/PersonalInformation need the same
+  classes, consider moving the shared bits into a global
+  `forms.css` and importing that instead of duplicating.
+*/
+
+:root {
+    --tbs-navy: #12305b;
+    --tbs-blue: #1c5fae;
+    --tbs-amber: #f2a71b;
+    --tbs-bg: #f3f6fa;
+    --tbs-text: #1a2433;
+    --tbs-muted: #647184;
+    --tbs-error: #c23b3b;
+    --tbs-border: #d7dee7;
+}
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--tbs-bg);
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 200px;
+    background: #ffffff;
+    border: 1px solid var(--tbs-border);
+    border-radius: 12px;
+    padding: 32px 28px;
+    box-shadow: 0 8px 24px rgba(18, 48, 91, 0.08);
+}
+
+/* FormHeader */
+.form-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.form-header__logo {
+    height: 40px;
+    margin-bottom: 12px;
+}
+
+.form-header__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--tbs-navy);
+    margin: 0 0 4px;
+}
+
+.form-header__subtitle {
+    font-size: 0.9rem;
+    color: var(--tbs-muted);
+    margin: 0;
+}
+
+/* Fields */
+.field {
+    margin-bottom: 18px;
+}
+
+.field-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--tbs-text);
+    margin-bottom: 6px;
+}
+
+.field-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    border: 1px solid var(--tbs-border);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--tbs-text);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field-input:focus {
+    outline: none;
+    border-color: var(--tbs-blue);
+    box-shadow: 0 0 0 3px rgba(28, 95, 174, 0.15);
+}
+
+.field-input--error {
+    border-color: var(--tbs-error);
+}
+
+.field-error {
+    margin: 6px 0 0;
+    font-size: 0.8rem;
+    color: var(--tbs-error);
+}
+
+/* Password field */
+.password-field-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-field-wrapper .field-input {
+    padding-right: 56px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: var(--tbs-blue);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.password-toggle:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+.btn {
+    width: 100%;
+    padding: 11px 16px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.btn--primary {
+    background: var(--tbs-blue);
+    color: #ffffff;
+}
+
+.btn--primary:hover:not(:disabled) {
+    background: var(--tbs-navy);
+}
+
+.btn:disabled,
+.btn--loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Form-level error */
+.form-error {
+    background: #fdecec;
+    color: var(--tbs-error);
+    border: 1px solid #f3caca;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    margin-bottom: 18px;
+}
+
+/* Sign up prompt */
+.login-signup-prompt {
+    text-align: center;
+    margin: 20px 0 0;
+    font-size: 0.85rem;
+    color: var(--tbs-muted);
+}
+
+.login-signup-prompt a {
+    color: var(--tbs-blue);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-signup-prompt a:hover {
+    text-decoration: underline;
+}
