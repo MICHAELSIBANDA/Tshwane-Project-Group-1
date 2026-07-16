@@ -1,0 +1,24 @@
+/*
+  Register.css
+
+  Register reuses Login.css's shared classes (.field, .field-input--pill,
+  .btn, .btn--pill, .password-toggle, .form-error, .login-divider) so both
+  pages stay visually identical. This file only adjusts the bits that
+  differ: a shorter hero (nine fields need more vertical room than
+  Login's two) and the hero copy layout.
+*/
+
+.register-hero {
+    padding: 24px 32px 40px;
+}
+
+.register-hero__title {
+    font-size: 1.9rem;
+    margin-bottom: 10px;
+}
+
+/* Nine pill fields in a row need tighter spacing than Login's two,
+   otherwise the form runs very long on small screens. */
+.register-form .field {
+    margin-bottom: 14px;
+}
