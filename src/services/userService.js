@@ -1,27 +1,32 @@
-const fakeUser = {
-  name: "Thabo",
-  surname: "Mokoena",
-  cardNumber: "TBS-0294817",
-  balance: 87.50,
-};
+import { API_BASE_URL } from "./api";
 
-export async function getProfile() {
-  await new Promise((r) => setTimeout(r, 400));
-  return fakeUser;
+export async function getHomeData(govId) {
+  const response = await fetch(`${API_BASE_URL}/api/users/${govId}/home`);
+
+  if (!response.ok) {
+    throw new Error("Failed to load account data");
+  }
+
+  return response.json(); // { first_name, last_name, gov_id, balance }
 }
 
-export async function getBalance() {
-  await new Promise((r) => setTimeout(r, 300));
-  return { balance: fakeUser.balance };
-}
+export async function changePassword({ govId, currentPassword, newPassword }) {
+  const response = await fetch(`${API_BASE_URL}/api/auth/${encodeURIComponent(govId)}/password`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      currentPassword,
+      newPassword,
+    }),
+  });
 
-export async function changePassword({ currentPassword, newPassword }) {
-  await new Promise((r) => setTimeout(r, 500));
-  if (currentPassword !== "password123") {
-    throw new Error("Current password is incorrect");
+  const payload = await response.text();
+
+  if (!response.ok) {
+    throw new Error(payload || "Unable to update password.");
   }
-  if (!newPassword) {
-    throw new Error("New password is required");
-  }
-  return { success: true };
+
+  return payload ? JSON.parse(payload) : { success: true };
 }

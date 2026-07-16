@@ -1,33 +1,46 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getProfile } from "../../services/userService";
+import { getHomeData } from "../../services/userService"
 import "./Home.css";
 
 function Home() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function loadProfile() {
+      const govId = localStorage.getItem("gov_id");
+
+    if (!govId) {
+      navigate("/login");
+      return;
+    }
+
+    async function loadHomeData() {
       try {
-        const profile = await getProfile();
-        setUser(profile);
+        const data = await getHomeData(govId);
+        setUser(data);
       } catch (err) {
-        console.error("Failed to load profile", err);
+        console.error("Failed to load home data", err);
+        setError("Couldn't load your account. Please try again.");
       } finally {
         setLoading(false);
       }
     }
 
-    loadProfile();
-  }, []);
+    loadHomeData();
+  }, [navigate]);
 
   if (loading) {
     return <div className="home-loading">Loading your account...</div>;
   }
 
-  const displayName = user?.name || "user";
+  if (error) {
+    return <div className="home-loading">{error}</div>;
+  }
+
+  const displayName = user?.first_name || "user";
   const balance = Number(user?.balance ?? 0);
 
   return (
@@ -106,7 +119,12 @@ function Home() {
           Change Password
         </button>
 
-        <button className="btn btn-logout" onClick={() => navigate("/login")}>
+        <button
+          className="btn btn-logout"
+          onClick={() => {localStorage.removeItem("gov_id");
+          navigate("/login");
+          }}
+        >
           Logout
         </button>
       </section>

@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { changePassword } from "../../services/userService";
 import "./ChangePassword.css";
 
+function getStoredGovId() {
+  return localStorage.getItem("gov_id") || "";
+}
+
 function LockIcon({ className = "" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -107,7 +111,13 @@ function ChangePassword() {
 
     try {
       setSubmitting(true);
-      await changePassword({ currentPassword, newPassword });
+      const govId = getStoredGovId();
+
+      if (!govId) {
+        throw new Error("User identity is missing. Please log in again.");
+      }
+
+      await changePassword({ govId, currentPassword, newPassword });
       setMessage("Password updated successfully.");
       setCurrentPassword("");
       setNewPassword("");

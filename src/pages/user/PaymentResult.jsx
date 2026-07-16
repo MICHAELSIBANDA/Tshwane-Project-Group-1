@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { verifyPayment } from "../../services/paymentService";
 import "./Payment.css";
 
 function ResultIcon({ success }) {
@@ -34,12 +36,50 @@ function formatCurrency(amount) {
 function PaymentResult() {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const status = state?.status || new URLSearchParams(window.location.search).get("status") || "failed";
+  const searchParams = new URLSearchParams(window.location.search);
+  const reference = state?.reference || searchParams.get("reference") || "";
+  const [status, setStatus] = useState(state?.status || (reference ? "verifying" : "failed"));
+  const [message, setMessage] = useState(state?.message || "");
+  const [amount] = useState(state?.amount);
+  const [newBalance] = useState(state?.newBalance);
   const success = status === "success";
-  const amount = state?.amount;
-  const reference = state?.reference;
-  const newBalance = state?.newBalance;
-  const message = state?.message;
+
+  useEffect(() => {
+    if (!reference || state?.status) {
+      return;
+    }
+
+    let isMounted = true;
+
+    async function verify() {
+      try {
+        const result = await verifyPayment(reference);
+
+        if (!isMounted) {
+          return;
+        }
+
+        if (result === "Success" || result === "Already done") {
+          setStatus("success");
+          setMessage("Your card balance has been updated successfully.");
+        } else {
+          setStatus("failed");
+          setMessage("We could not verify the payment. Please try again.");
+        }
+      } catch (error) {
+        if (isMounted) {
+          setStatus("failed");
+          setMessage(error.message || "We could not verify the payment. Please try again.");
+        }
+      }
+    }
+
+    verify();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [reference, state?.status]);
 
   return (
     <main className="payment-result-page">
@@ -61,11 +101,13 @@ function PaymentResult() {
             <ResultIcon success={success} />
           </div>
 
-          <h1>{success ? "Payment Successful" : "Payment Unsuccessful"}</h1>
+          <h1>{success ? "Payment Successful" : status === "verifying" ? "Verifying Payment" : "Payment Unsuccessful"}</h1>
           <p>
-            {success
-              ? `${formatCurrency(amount)} has been loaded onto your card.`
-              : message || "We could not complete the payment. Please try again."}
+            {status === "verifying"
+              ? "We are confirming your payment with the backend. Please wait a moment."
+              : success
+                ? `${formatCurrency(amount)} has been loaded onto your card.`
+                : message || "We could not complete the payment. Please try again."}
           </p>
 
           {success && newBalance !== undefined && (
